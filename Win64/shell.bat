@@ -1,1 +1,0 @@
-XCOPY /A main.exe .\..\Win64.exe Y
