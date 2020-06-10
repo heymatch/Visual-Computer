@@ -50,6 +50,7 @@ public:
 
     int getData();
 protected:
+    void setDepth();
     Node *root_;
 private:
     size_t height_;

@@ -1,14 +1,13 @@
 /**
  * Node
- * - Single Node
- * - Array Node
  */
 
 #ifndef NODE
 #define NODE
 
 #include <cstdlib>
-#include <iostream>
+#include <ostream>
+#include <iomanip>
 #include "exception.h"
 
 struct Data{
@@ -38,6 +37,8 @@ public:
     
     inline bool isFull() { return size_ == capacity_; }
     inline bool isEmpty() { return size_ == 0; }
+
+    void setDepth(size_t depth);
 protected:
     int getOffsetByKey(int key);
     void addEdge();
@@ -48,6 +49,7 @@ private:
     size_t degree_;
     size_t capacity_;
     size_t size_;
+    size_t depth_;
 };
 
 #endif

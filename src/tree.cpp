@@ -5,12 +5,12 @@ TreeNode::TreeNode(int capacity) : Node(capacity), children_(next_){
 }
 
 BinaryTreeNode::BinaryTreeNode(int capacity) : TreeNode(capacity), left_(children_[0]), right_(children_[1]){
-
+    addEdge();
+    addEdge();
 }
 
 BinarySearchTreeNode::BinarySearchTreeNode() : BinaryTreeNode(1){
-    addEdge();
-    addEdge();
+    
 }
 
 void BinarySearchTreeNode::insert(Data data){
@@ -37,9 +37,9 @@ void BinarySearchTreeNode::insert(Data data){
 }
 
 std::ostream &operator<<(std::ostream &out, const Tree &right){
-    out << "{";
+    out << "[\n";
     out << *right.root_;
-    out << "}";
+    out << "\n]";
 
     return out;
 }
@@ -69,6 +69,10 @@ void Tree::erase(int key){
 
 }
 
+void Tree::setDepth(){
+    root_->setDepth(0);
+}
+
 BinaryTree::BinaryTree() : Tree(){
 
 }
@@ -88,4 +92,5 @@ void BinarySearchTree::insert(Data data){
         return;
     }
     root_->insert(data);
+    setDepth();
 }

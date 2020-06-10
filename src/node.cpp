@@ -5,6 +5,7 @@ Node::Node(size_t capacity) : capacity_(capacity){
     next_ = new Node*[10];
     size_ = 0;
     degree_ = 0;
+    depth_ = 0;
 }
 
 std::ostream &operator<<(std::ostream &out, const Node &right){
@@ -17,8 +18,18 @@ std::ostream &operator<<(std::ostream &out, const Node &right){
     }
     out << "}";
     for(int i = 0; i < right.degree_; ++i){
-        if(right.next_[i] != nullptr)
+        if(right.next_[i] != nullptr){
+            out << "\n";
+            for(int i = 0; i < right.depth_ + 1; ++i)
+                out << std::setw(5) << "|";
             out << *right.next_[i] << " ";
+        }
+        else{
+            out << "\n";
+            for(int i = 0; i < right.depth_ + 1; ++i)
+                out << std::setw(5) << "|";
+            out << "{}" << " ";
+        }
     }
 
     return out;
@@ -61,5 +72,13 @@ int Node::getOffsetByKey(int key){
 }
 
 void Node::addEdge(){
-   next_[++degree_] = nullptr;
+   next_[degree_++] = nullptr;
+}
+
+void Node::setDepth(size_t depth){
+    depth_ = depth;
+    for(int i = 0; i < degree_; ++i){
+        if(next_[i] != nullptr)
+            next_[i]->setDepth(depth+1);
+    }
 }
