@@ -2,7 +2,7 @@
 #include "tree.h"
 
 int main(){
-    //std::cout << "test point 1" << std::endl;
+    std::cout << "test point 1" << std::endl;
     BinarySearchTree T;
     while(1){
         int key, data;
