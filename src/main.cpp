@@ -1,15 +1,20 @@
+#include <cstdio>
 #include <iostream>
-#include "tree.h"
+using namespace std;
+#include "basic.h"
 
 int main(){
-    std::cout << "test point 1" << std::endl;
-    BinarySearchTree T;
-    while(1){
-        int key, data;
-        std::cin >> key >> data;
-        T.insert(Data(key, data));
-        std::cout << T << std::endl;
-    }
-    
+
+#ifdef _WIN32
+    printf("This is not supported for Windows\n");
+#endif
+
+#ifdef __unix__
+    Integer A(10, 123), B(11, 12);
+    cout << "A = "<< A << endl;
+    cout << "B = "<< B << endl;
+    cout << "A+B = "<< A+B << endl;
+#endif
+
     return 0;
 }

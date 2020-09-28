@@ -19,8 +19,14 @@ else
 OBJ := $(patsubst $(SRC_PATH)%.cpp, $(OBJ_PATH)%.o, $(SRC_LIST))
 endif
 
+# part compile
+fast: compile
+
 # whole compile
-all: $(OBJ)
+all: clear compile
+
+# compile only
+compile: $(OBJ)
 ifeq ($(OS), Windows_NT)
 	$(CC) $(CFLAGS) -o Visual_Computer.exe $(OBJ)
 else
@@ -35,13 +41,13 @@ $(OBJ_PATH)main.o: $(SRC_PATH)main.cpp
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(SRC_PATH)%.h
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-# clean .exe/.out and .o
-.PHONY: clean
-clean:
+# clear .exe/.out and .o
+.PHONY: clear
+clear:
 ifeq ($(OS), Windows_NT)
-	del Visual_Computer.exe
 	del .\obj\*.o
+	del Visual_Computer.exe
 else
-	rm ./Visual_Computer.out
 	rm ./obj/*.o
+	rm ./Visual_Computer.out
 endif
